@@ -1,0 +1,42 @@
+@use './variables' as *; // 引入全局 SCSS 变量，并允许在本文件直接使用变量名
+@use './animations'; // 引入动画规则，使动画类和无障碍动画设置进入全局样式
+
+:root { // 设置整个文档通用的基础文字和渲染属性
+  font-family: Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif; // 设置英文字体及中文字体回退顺序
+  color: $color-text; // 设置默认文字颜色
+  background: $color-background; // 设置页面默认背景色
+  font-synthesis: none; // 禁止浏览器合成缺失的字形样式
+  text-rendering: optimizeLegibility; // 优先改善文字的可读性
+  -webkit-font-smoothing: antialiased; // 在 WebKit 浏览器中平滑显示字体
+  -moz-osx-font-smoothing: grayscale; // 在 macOS Firefox 中使用灰度抗锯齿
+  font-optical-sizing: auto; // 按字体光学尺寸自动优化字形
+} // 结束文档根元素的基础样式
+
+*, *::before, *::after { box-sizing: border-box; } // 让元素尺寸包含内边距和边框，便于布局计算
+html { min-width: 320px; scroll-behavior: smooth; } // 限定页面最小宽度，并启用锚点平滑滚动
+body { min-width: 320px; min-height: 100vh; margin: 0; } // 设置页面最小尺寸并清除浏览器默认外边距
+button, input, textarea, select { font: inherit; } // 表单控件继承页面字体设置
+button, a { -webkit-tap-highlight-color: transparent; } // 移除移动端点击按钮和链接时的默认高亮
+a { color: inherit; text-decoration: none; } // 链接继承文字颜色并移除默认下划线
+img, svg { display: block; max-width: 100%; } // 图片和 SVG 作为块级元素并限制在容器宽度内
+h1, h2, h3, p { margin: 0; } // 清除常见标题和段落的默认外边距
+ul { margin: 0; padding: 0; list-style: none; } // 清除列表默认缩进和项目符号
+::selection { color: #03111e; background: $color-brand; } // 设置用户选中文字时的前景色和背景色
+
+.container { width: min(100% - 48px, $container-max-width); margin-inline: auto; } // 设置居中的响应式内容容器及最大宽度
+.section { position: relative; min-height: 100svh; padding: 112px 0 88px; overflow: hidden; } // 提供通用全屏区块定位、间距和溢出控制
+.section-placeholder { display: grid; min-height: 100svh; place-items: center; padding: 112px 24px 88px; border-bottom: 1px solid $color-border; color: $color-text-muted; text-align: center; } // 设置首页业务区块的全屏占位布局
+.app-header, .app-footer { padding: 20px 0; color: $color-text-muted; } // 为全局页头和页脚设置通用内边距与次要文字颜色
+.app-header { border-bottom: 1px solid $color-border; } // 使用底边框区分页头与页面内容
+.app-footer { border-top: 1px solid $color-border; } // 使用顶边框区分页脚与页面内容
+.section__eyebrow { color: $color-brand; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; } // 设置区块眉题的品牌色、字号和字间距
+.section__title { margin-top: 14px; font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1.12; letter-spacing: -0.04em; } // 设置区块标题的响应式字号和紧凑排版
+.section__description { max-width: 640px; margin-top: 18px; color: $color-text-muted; line-height: 1.8; } // 限制说明文本宽度并设置次要颜色和行高
+
+@media (max-width: $breakpoint-tablet) { // 屏幕达到平板断点时调整通用区块间距
+  .section { min-height: auto; padding: 96px 0 72px; } // 取消强制全屏高度并缩小平板下区块内边距
+} // 结束平板断点样式
+@media (max-width: $breakpoint-mobile) { // 屏幕达到手机断点时调整容器和区块尺寸
+  .container { width: min(100% - 36px, $container-max-width); } // 缩小手机端容器左右留白
+  .section { padding: 80px 0 60px; } // 缩小手机端区块上下内边距
+} // 结束手机断点样式

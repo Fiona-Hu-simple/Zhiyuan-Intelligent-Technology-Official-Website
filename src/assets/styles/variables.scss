@@ -1,0 +1,11 @@
+$color-brand: #5c96af; // 品牌主色
+$color-brand-strong: #5f9e86; // 品牌强调色
+$color-background: #1b529e; // 页面基础背景色
+$color-background-soft: #778ea9; // 柔和背景色：用于区块、卡片等次级背景
+$color-surface: rgba(18, 42, 69, 0.72); // 浮层表面色：用于半透明卡片、面板或弹层背景
+$color-text: #f4f8ff; // 主要文字颜色
+$color-text-muted: #9db1c9; // 次要文字颜色：用于说明、辅助信息和占位文字
+$color-border: rgba(157, 190, 224, 0.18); // 分隔线和边框颜色
+$container-max-width: 1200px; // 内容容器最大宽度
+$breakpoint-mobile: 640px; // 手机布局断点：小于或等于此宽度应用移动端样式
+$breakpoint-tablet: 960px; // 平板布局断点：小于或等于此宽度应用平板/窄屏样式

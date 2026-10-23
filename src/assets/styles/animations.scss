@@ -1,0 +1,21 @@
+@keyframes float { // 定义上下浮动动画的关键帧
+  0%, 100% { transform: translateY(0); } // 动画开始和结束时回到原位
+  50% { transform: translateY(-12px); } // 动画中段向上移动 12px
+} // 结束浮动动画定义
+
+@keyframes fade-up { // 定义淡入并向上移动的进入动画
+  from { opacity: 0; transform: translateY(18px); } // 起始时透明并向下偏移 18px
+  to { opacity: 1; transform: translateY(0); } // 结束时完全显示并回到原位
+} // 结束淡入上移动画定义
+
+.animate-fade-up { animation: fade-up 700ms ease both; } // 提供 700ms 淡入上移动画工具类
+.animate-float { animation: float 6s ease-in-out infinite; } // 提供 6 秒循环浮动动画工具类
+
+@media (prefers-reduced-motion: reduce) { // 用户系统偏好减少动态效果时启用此规则/无障碍规则
+  *, *::before, *::after { // 覆盖所有元素及其伪元素上的动效
+    scroll-behavior: auto !important; // 关闭平滑滚动效果
+    animation-duration: 0.01ms !important; // 将动画持续时间缩短到近乎即时
+    animation-iteration-count: 1 !important; // 避免动画重复播放
+    transition-duration: 0.01ms !important; // 将过渡效果缩短到近乎即时
+  } // 结束全局动效覆盖
+} // 结束减少动态效果媒体查询
